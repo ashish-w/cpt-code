@@ -1,0 +1,23 @@
+.mobileToggler {
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 991px) {
+    .mobileToggler {
+      display: none;
+    }
+  }
+
+  .closeBtn {
+    border-radius: 50%;
+    border: 1px solid #88bc2c;
+    width:25px;
+    height: 25px;
+    text-align: center;
+    background:white;
+    color: #88bc2c;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
