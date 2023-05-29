@@ -1,83 +1,66 @@
-
-import { useEffect, useState, useRef } from 'react';
-import { Modal } from 'antd';
+import { useEffect, useState, useRef } from "react";
+import { Modal } from "antd";
 import { calculateTotalPrice, extractNumber } from "utils/utils";
 import SummaryAndCheckout from "../SummaryAndCheckout/SummaryAndCheckout";
 
 export default function ModalForm(props) {
+  const { startDate, count, setCount, tourData, showReserveBtn } = props;
 
-    const {
-        startDate,
-        count,
-        setCount,
-        tourData,
-        showReserveBtn
-    } = props;
+  const { total } = count;
 
-    const {
-        total
-    } = count;
+  const { fixedDuration, title } = tourData;
 
-    const {
-        fixedDuration,
-        title
-    } = tourData;
+  const childRef = useRef();
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState("");
 
-    const childRef = useRef();
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
 
-    const [isModalVisible, setIsModalVisible] = useState(false);
-    const [paymentStatus, setPaymentStatus] = useState('');
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
 
+  const handleCancel = () => {
+    setIsModalVisible(false);
+    setPaymentStatus("");
+    if (showReserveBtn) showReserveBtn();
+  };
 
-    const showModal = () => {
-        setIsModalVisible(true);
-    };
+  useEffect(() => {
+    const initialDuration = fixedDuration ? extractNumber(fixedDuration) : 1;
 
-    const handleOk = () => {
-        setIsModalVisible(false);
-    };
+    setCount({ ...count, tour: title, duration: initialDuration });
+    calculateTotalPrice({ count, tourData, setCount });
 
-    const handleCancel = () => {
-        setIsModalVisible(false);
-        setPaymentStatus('');
-        if (showReserveBtn) showReserveBtn();
-    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isModalVisible, total]);
 
-
-    useEffect(() => {
-
-        const initialDuration = fixedDuration ? extractNumber(fixedDuration) : 1;
-
-        setCount({ ...count, tour: title, duration: initialDuration });
-        calculateTotalPrice({ count, tourData, setCount });
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isModalVisible, total])
-
-    return (<>
-        <div onClick={showModal} className='btn-reserve'>
-            Reserve
-        </div>
-        <Modal
-            open={isModalVisible}
-            onOk={handleOk}
-            width={900}
-            onCancel={handleCancel}
-            footer={null}
-            destroyOnClose={true}
-        >
-
-            <SummaryAndCheckout
-                count={count}
-                setCount={setCount}
-                startDate={startDate}
-                childRef={childRef}
-                paymentStatus={paymentStatus}
-                setPaymentStatus={setPaymentStatus}
-                tourData={tourData}
-            />
-
-        </Modal>
-    </>)
+  return (
+    <>
+      <div onClick={showModal} className="btn-reserve">
+        Book Now
+      </div>
+      <Modal
+        open={isModalVisible}
+        onOk={handleOk}
+        width={900}
+        onCancel={handleCancel}
+        footer={null}
+        destroyOnClose={true}
+      >
+        <SummaryAndCheckout
+          count={count}
+          setCount={setCount}
+          startDate={startDate}
+          childRef={childRef}
+          paymentStatus={paymentStatus}
+          setPaymentStatus={setPaymentStatus}
+          tourData={tourData}
+        />
+      </Modal>
+    </>
+  );
 }
