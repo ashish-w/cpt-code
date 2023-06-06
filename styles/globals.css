@@ -116,7 +116,8 @@ a {
     bottom: 100px;
     position: fixed;
     padding: 10px;
-    /* height: 370px; */
+    height: 370px;
+    overflow: auto;
     /* width: 300px; */
     /* background: rgb(255, 255, 255); */
     width: auto !important;
@@ -130,8 +131,10 @@ a {
   }
 
   #sidebar {
-    /* height: 480px; */
-    height: max-content;
+    height: 480px;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+    /* height: max-content; */
   }
 
   .sidebar:hover {
@@ -513,4 +516,27 @@ a {
   font-weight: 700 !important;
   transition: 0.2s !important;
   cursor: pointer !important;
+}
+
+/* Custom Scrollbar */
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  padding: 2px;
+}
+
+/* Track */
+.custom-scrollbar::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px white;
+}
+
+/* Handle */
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgb(223, 222, 222);
+  height: 20px;
+  border-radius: 10px;
+  max-height: 20px;
+  margin-top: 40%;
+  margin-bottom: 40%;
 }

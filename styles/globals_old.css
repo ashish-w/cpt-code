@@ -954,7 +954,7 @@ footer p {
 @media (min-width: 1120px) {
   .sidebar {
     right: 100px;
-    /* top: 200px; */
+    top: 200px;
     bottom: 50px;
     position: fixed;
     padding: 10px;

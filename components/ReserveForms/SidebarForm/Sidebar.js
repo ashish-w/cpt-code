@@ -76,11 +76,10 @@ const Sidebar = (props) => {
 
   return (
     <div
-      className={`sidebar ${scroll > 3200 ? "hidden" : ""}`}
+      className={`sidebar custom-scrollbar ${scroll > 3200 ? "hidden" : ""}`}
       id="sidebar"
       style={{
-        // top: isNotFixedPrice ? 120 : 200
-        bottom: "50px",
+        top: isNotFixedPrice ? 120 : 200,
       }}
     >
       <div className="container">
