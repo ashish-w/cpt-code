@@ -5,6 +5,7 @@ import QuantitySelectors from "../QuantitySelectors/QuantitySelectors";
 
 const BookingFormContent = (props) => {
   const {
+    header,
     setHours,
     setMinutes,
     startDate,
@@ -22,7 +23,8 @@ const BookingFormContent = (props) => {
         <div className="container d-flex justify-content-center">
           <div className="row">
             <div className="col text-center">
-              <p className="book-title">Book Now</p>
+              <p className="book-title">{header}</p>
+
               <div className="form-group datepicker">
                 <DatePicker
                   className="form-control"

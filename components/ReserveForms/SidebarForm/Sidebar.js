@@ -83,6 +83,7 @@ const Sidebar = (props) => {
       <div className="container">
         {!isNotFixedPrice ? (
           <BookingFormContent
+            header="Book Your Pedicab Tour"
             setHours={setHours}
             setMinutes={setMinutes}
             startDate={startDate}
