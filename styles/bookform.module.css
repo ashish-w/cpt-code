@@ -18,14 +18,41 @@
 
 .date_container {
   display: flex;
-  justify-content: space-between;
+  gap: 0.6rem;
   margin: 1rem 0;
+  flex-grow: 1;
 }
 
 .single_date {
-  border-radius: 2px;
+  border-radius: 8px;
   background: white;
-  padding: 2px;
+  padding: 5px 12px;
   display: grid;
   gap: 4px;
+  cursor: pointer;
+}
+
+.chevron_right_date {
+  font-size: 2rem;
+  color: gray;
+  cursor: pointer;
+}
+
+.date_container_section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.time_slot_container {
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.time_slot {
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: #88bc2c;
+  color: white;
 }

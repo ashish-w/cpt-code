@@ -12,7 +12,7 @@ body {
   color: #464545;
 }
 
-.h1-title{
+.h1-title {
   font-family: "Arial Black";
   font-weight: 900;
   letter-spacing: 0;
@@ -20,18 +20,18 @@ body {
 }
 
 @media (max-width: 600px) {
-  .h1-title{
-  font-size: 40px;
+  .h1-title {
+    font-size: 40px;
   }
-  .display-4{
-      font-size: 40px;
+  .display-4 {
+    font-size: 40px;
   }
-  .subtitle-4{
+  .subtitle-4 {
     font-size: 15px;
   }
 }
 
-.h2-title{
+.h2-title {
   font-family: "Arial Black";
   font-size: 45px;
   font-weight: 800;
@@ -112,12 +112,15 @@ a {
   .sidebar {
     color: #464545;
     right: 100px;
-    top: 200px;
+    /* top: 200px; */
+    bottom: 100px;
     position: fixed;
     padding: 10px;
-    height: 370px;
-    width: 300px;
-    background: rgb(255, 255, 255);
+    /* height: 370px; */
+    /* width: 300px; */
+    /* background: rgb(255, 255, 255); */
+    width: auto !important;
+    background: #f4f4f4 !important;
     z-index: 999;
     border-radius: 15px;
     -webkit-box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.53);
@@ -125,7 +128,6 @@ a {
     box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.53);
     transition: all 0.3s;
   }
-
 
   #sidebar {
     /* height: 480px; */
@@ -142,7 +144,7 @@ a {
 .hidden {
   visibility: hidden;
   opacity: 0;
-  height: 0; 
+  height: 0;
 }
 
 .book-title {
@@ -282,7 +284,6 @@ a {
   }
 } */
 
-
 /* video background */
 
 .video-background-holder {
@@ -362,28 +363,27 @@ a {
 
 @media (min-width: 992px) {
   .grid {
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(auto, 1fr);
-  grid-column-gap: 0;
-  grid-row-gap: 35px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(auto, 1fr);
+    grid-column-gap: 0;
+    grid-row-gap: 35px;
   }
 }
-
 
 /* prev next icons fill color (blog posts section) */
 .carousel-control-prev-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='rgb(128, 191, 47, 1)' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
- }
+}
 
- .carousel-control-next-icon {
+.carousel-control-next-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='rgb(128, 191, 47, 1)' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
 }
 
 .active-tab {
   outline: none !important;
-  color:white !important;
+  color: white !important;
   background: #88bc2c !important;
 }
 
@@ -394,26 +394,26 @@ a {
 }
 
 @media (max-width: 991px) {
-  .absoluteBtn{
+  .absoluteBtn {
     right: 15px;
     bottom: -350px;
   }
 }
 
 @media (max-width: 400px) {
-  .absoluteBtn{
+  .absoluteBtn {
     bottom: -415px;
   }
 }
 
 .paymentScreen {
-    width: 100%;
-    height: 355px;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    font-size: 20px;
+  width: 100%;
+  height: 355px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 20px;
 }
 
 .attractions {
@@ -425,7 +425,6 @@ a {
 }
 
 @media (min-width: 768px) {
-  
   .attractions {
     display: block;
   }
@@ -443,8 +442,8 @@ a {
 }
 
 @media (max-width: 768px) {
-.contact-section {
-  padding-top: 50px;
+  .contact-section {
+    padding-top: 50px;
   }
 }
 
@@ -457,7 +456,7 @@ a {
 .datepicker {
   padding: 5px 12px 0 12px;
   border: 1px solid #88bc2c;
-  border-radius: 10px; 
+  border-radius: 10px;
   -webkit-box-shadow: 0px 0px 5px 5px rgba(207, 242, 173, 0.3);
   -moz-box-shadow: 0px 0px 5px 5px rgba(207, 242, 173, 0.3);
   box-shadow: 0px 0px 5px 5px rgba(207, 242, 173, 0.3);
@@ -484,4 +483,34 @@ a {
   .gallerySection {
     padding-bottom: 10px;
   }
+}
+
+.text-bold {
+  font-weight: 900;
+}
+
+.text-dark-green {
+  color: #88bc2c;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text-normal {
+  font-size: 1.4rem;
+}
+.book-now-btn {
+  text-align: center;
+  color: white !important;
+  /* background: #88bc2c !important;
+  border: 1px solid #88bc2c !important; */
+  background: #1b3d02 !important;
+  border: 1px solid #1b3d02 !important;
+  border-radius: 5rem !important;
+  padding: 10px !important;
+  /* width: 140px !important; */
+  margin: 0 auto !important;
+  font-weight: 700 !important;
+  transition: 0.2s !important;
+  cursor: pointer !important;
 }

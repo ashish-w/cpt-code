@@ -40,8 +40,8 @@ export default function ModalForm(props) {
 
   return (
     <>
-      <div onClick={showModal} className="btn-reserve">
-        Book Now
+      <div onClick={showModal} className="book-now-btn">
+       $258 Book Now
       </div>
       <Modal
         open={isModalVisible}

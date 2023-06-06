@@ -78,12 +78,14 @@ const Sidebar = (props) => {
     <div
       className={`sidebar ${scroll > 3200 ? "hidden" : ""}`}
       id="sidebar"
-      style={{ top: isNotFixedPrice ? 120 : 200 }}
+      style={{
+        // top: isNotFixedPrice ? 120 : 200
+        bottom: "50px",
+      }}
     >
       <div className="container">
         {!isNotFixedPrice ? (
           <BookingFormContent
-            header="Book Your Pedicab Tour"
             setHours={setHours}
             setMinutes={setMinutes}
             startDate={startDate}
