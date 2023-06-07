@@ -9,7 +9,7 @@ const QuantitySelectors = ({ setCount, count, tourData, maxDuration }) => {
           justifyContent: "space-between",
           alignItems: "flex-start",
         }}
-        className="mt-4"
+        className="mt-4 mb-2"
       >
         <div className="form-group" style={{}}>
           <div className="t-title text-bold">Adults (16+)</div>
@@ -33,12 +33,14 @@ const QuantitySelectors = ({ setCount, count, tourData, maxDuration }) => {
             </div>
             <input
               className="counter-field-sidebar text-dark-green"
+              style={{ width: "4rem", borderRadius: "30px" }}
               type="number"
               value={count.adults}
               readOnly
             />
             <div
               className="cursor-pointer text-normal"
+              style={{ color: "#5ba205" }}
               onClick={(e) => setCount({ ...count, adults: count.adults + 1 })}
             >
               +
@@ -47,7 +49,7 @@ const QuantitySelectors = ({ setCount, count, tourData, maxDuration }) => {
         </div>
 
         <div className="form-group ">
-          <div className="t-title text-bold">Children (5+)</div>
+          <div className="t-title text-bold">Children (5-16)</div>
           <div
             className=""
             style={{
@@ -68,12 +70,17 @@ const QuantitySelectors = ({ setCount, count, tourData, maxDuration }) => {
             </div>
             <input
               className="counter-field-sidebar text-dark-green"
+              style={{
+                width: "4rem",
+                borderRadius: "30px",
+              }}
               type="number"
               value={count.kids}
               readOnly
             />
             <div
               className="cursor-pointer text-normal"
+              style={{ color: "#5ba205" }}
               onClick={(e) => setCount({ ...count, kids: count.kids + 1 })}
             >
               +
@@ -150,7 +157,7 @@ const QuantitySelectors = ({ setCount, count, tourData, maxDuration }) => {
           </div>
         </>
       )}
-{/* 
+      {/* 
       {tourData?.fixedDuration ? (
         <p className="t-title">
           <b> {tourData.fixedDuration}</b>

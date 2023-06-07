@@ -1,6 +1,6 @@
 .slot_container {
   display: flex;
-  gap: 1rem;
+  gap: 0.3rem;
 }
 
 .slot_item {
@@ -8,17 +8,25 @@
   padding: 4px 8px;
   background: #1b3d02;
   color: white;
+  font-size:small;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 .slot_item_2 {
   border-radius: 0.5rem;
   padding: 4px 8px;
-  background: #88bc2c;
+  background: #5ba205;
   color: white;
+  font-size: small;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
 .date_container {
   display: flex;
-  gap: 0.6rem;
+  gap: 0.4rem;
   margin: 1rem 0;
   flex-grow: 1;
 }
@@ -30,6 +38,8 @@
   display: grid;
   gap: 4px;
   cursor: pointer;
+  font-size: small;
+  font-weight: bold;
 }
 
 .chevron_right_date {
@@ -48,11 +58,13 @@
   display: grid;
   gap: 0.6rem;
   grid-template-columns: repeat(4, 1fr);
+  font-size: small;
 }
 
 .time_slot {
   padding: 3px 7px;
   border-radius: 6px;
-  background: #88bc2c;
+  background: #5ba205;
   color: white;
+  font-size: smaller;
 }

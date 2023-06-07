@@ -28,6 +28,27 @@ const BookingFormContent = (props) => {
   const toggleCalendarStatus = () => {
     setShouldOpenCalendar(!shouldOpenCalendar);
   };
+
+  const getTimeString = (iter) => {
+    let now = new Date();
+    now.setHours(9);
+    now.setMinutes(0);
+    now.setMilliseconds(0);
+
+    now = new Date(now.getTime() + 1800000 * iter);
+
+    return now.getMinutes()
+      ? now.toLocaleString("en-US", {
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+        })
+      : now.toLocaleString("en-US", {
+          hour: "numeric",
+          hour12: true,
+        });
+  };
+
   return (
     <div>
       {/* <form>
@@ -88,11 +109,21 @@ const BookingFormContent = (props) => {
               </div>
               <div className={styles.date_container_section}>
                 <div className={styles.date_container}>
-                  {[...Array(6)].map((val) => {
+                  {[...Array(6)].map((val, i) => {
                     return (
                       <div className={styles.single_date}>
-                        <span className="">F</span>
-                        <span className="">12</span>
+                        <span className="">
+                          {
+                            new Date(
+                              new Date().getTime() + 86400000 * i
+                            ).toString()[0]
+                          }
+                        </span>
+                        <span className="">
+                          {new Date(
+                            new Date().getTime() + 86400000 * i
+                          ).getDate()}
+                        </span>
                       </div>
                     );
                   })}
@@ -105,8 +136,10 @@ const BookingFormContent = (props) => {
               </div>
               {shouldOpenCalendar ? <DatePicker /> : ""}
               <div className={styles.time_slot_container}>
-                {[...Array(10)].map(() => {
-                  return <div className={styles.time_slot}>9 A.M</div>;
+                {[...Array(10)].map((x, i) => {
+                  return (
+                    <div className={styles.time_slot}>{getTimeString(i)}</div>
+                  );
                 })}
               </div>
               <QuantitySelectors

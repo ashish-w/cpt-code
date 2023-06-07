@@ -131,9 +131,9 @@ a {
   }
 
   #sidebar {
-    height: 480px;
+    height: 450px;
     padding-top: 1.5rem;
-    padding-bottom: 1rem;
+    padding-bottom: 1.5rem;
     /* height: max-content; */
   }
 
