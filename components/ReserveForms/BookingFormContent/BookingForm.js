@@ -111,7 +111,7 @@ const BookingFormContent = (props) => {
                 <div className={styles.date_container}>
                   {[...Array(6)].map((val, i) => {
                     return (
-                      <div className={styles.single_date}>
+                      <div className={styles.single_date} key={i}>
                         <span className="">
                           {
                             new Date(
@@ -138,7 +138,9 @@ const BookingFormContent = (props) => {
               <div className={styles.time_slot_container}>
                 {[...Array(10)].map((x, i) => {
                   return (
-                    <div className={styles.time_slot}>{getTimeString(i)}</div>
+                    <div className={styles.time_slot} key={i}>
+                      {getTimeString(i)}
+                    </div>
                   );
                 })}
               </div>
