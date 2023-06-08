@@ -9,7 +9,7 @@ const QuantitySelectors = ({ setCount, count, tourData, maxDuration }) => {
           justifyContent: "space-between",
           alignItems: "flex-start",
         }}
-        className="mt-4 mb-2"
+        className="mt-3"
       >
         <div className="form-group" style={{}}>
           <div className="t-title text-bold">Adults (16+)</div>

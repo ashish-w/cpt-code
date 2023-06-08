@@ -112,7 +112,7 @@ a {
   .sidebar {
     color: #464545;
     right: 100px;
-    /* top: 200px; */
+    top: 170px !important;
     bottom: 100px;
     position: fixed;
     padding: 10px;
@@ -131,7 +131,7 @@ a {
   }
 
   #sidebar {
-    height: 450px;
+    height: 460px;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     /* height: max-content; */

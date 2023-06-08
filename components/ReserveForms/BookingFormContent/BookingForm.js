@@ -136,7 +136,7 @@ const BookingFormContent = (props) => {
               </div>
               {shouldOpenCalendar ? <DatePicker /> : ""}
               <div className={styles.time_slot_container}>
-                {[...Array(10)].map((x, i) => {
+                {[...Array(16)].map((x, i) => {
                   return (
                     <div className={styles.time_slot} key={i}>
                       {getTimeString(i)}
