@@ -12,6 +12,7 @@
   justify-content: center;
   align-items: center;
   display: flex;
+  cursor: pointer;
 }
 .slot_item_2 {
   border-radius: 0.5rem;
@@ -22,6 +23,7 @@
   justify-content: center;
   align-items: center;
   display: flex;
+  cursor: pointer;
 }
 
 .date_container {
@@ -67,4 +69,5 @@
   background: #5ba205;
   color: white;
   font-size: smaller;
+  cursor: pointer;
 }

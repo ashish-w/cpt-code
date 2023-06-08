@@ -49,6 +49,27 @@ const BookingFormContent = (props) => {
         });
   };
 
+  const toggleHours = (id1, id2) => {
+    document.getElementById(id1).style.background = "#1b3d02";
+    document.getElementById(id2).style.background = "#5ba205";
+  };
+
+  const toggleday = (id1) => {
+    for (let i = 0; i < 6; ++i) {
+      document.getElementById(i + "wday").style.background = "#ffffff";
+      document.getElementById(i + "wday").style.color = "#000000";
+    }
+    document.getElementById(id1).style.background = "#1b3d02";
+    document.getElementById(id1).style.color = "#ffffff";
+  };
+
+  const togglebtime = (id1) => {
+    for (let i = 0; i < 16; ++i) {
+      document.getElementById(i + "booktime").style.background = "#5ba205";
+    }
+    document.getElementById(id1).style.background = "#1b3d02";
+  };
+
   return (
     <div>
       {/* <form>
@@ -104,14 +125,31 @@ const BookingFormContent = (props) => {
             <div className="col text-center">
               <p className="book-title">{tourData?.title}</p>
               <div className={styles.slot_container}>
-                <div className={styles.slot_item}>1 Hour</div>
-                <div className={styles.slot_item_2}>2 Hours</div>
+                <div
+                  className={styles.slot_item}
+                  id="1hour"
+                  onClick={() => toggleHours("1hour", "2hour")}
+                >
+                  1 Hour
+                </div>
+                <div
+                  className={styles.slot_item_2}
+                  id="2hour"
+                  onClick={() => toggleHours("2hour", "1hour")}
+                >
+                  2 Hours
+                </div>
               </div>
               <div className={styles.date_container_section}>
                 <div className={styles.date_container}>
                   {[...Array(6)].map((val, i) => {
                     return (
-                      <div className={styles.single_date} key={i}>
+                      <div
+                        className={styles.single_date}
+                        key={i}
+                        id={i + "wday"}
+                        onClick={() => toggleday(i + "wday")}
+                      >
                         <span className="">
                           {
                             new Date(
@@ -138,7 +176,12 @@ const BookingFormContent = (props) => {
               <div className={styles.time_slot_container}>
                 {[...Array(16)].map((x, i) => {
                   return (
-                    <div className={styles.time_slot} key={i}>
+                    <div
+                      className={styles.time_slot}
+                      key={i}
+                      id={i + "booktime"}
+                      onClick={() => togglebtime(i + "booktime")}
+                    >
                       {getTimeString(i)}
                     </div>
                   );
