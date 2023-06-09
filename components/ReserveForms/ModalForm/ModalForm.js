@@ -7,9 +7,6 @@ import { global } from "styled-jsx/css";
 export default function ModalForm(props) {
   const { startDate, count, setCount, tourData, showReserveBtn } = props;
 
-  // console.log(count.duration);
-  // console.log(tourData);
-
   const { total } = count;
 
   const { fixedDuration, title } = tourData;
@@ -39,6 +36,8 @@ export default function ModalForm(props) {
     setCount({ ...count, tour: title, duration: initialDuration });
     calculateTotalPrice({ count, tourData, setCount });
 
+    updateBookPrice();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isModalVisible, total]);
 
@@ -56,8 +55,6 @@ export default function ModalForm(props) {
     }
     bookNowButtonRef.current.innerText = `$${price} Book Now`;
   };
-
-  updateBookPrice();
 
   return (
     <>
