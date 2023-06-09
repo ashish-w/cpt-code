@@ -2,29 +2,13 @@ import { useEffect, useState, useRef } from "react";
 import { Modal } from "antd";
 import { calculateTotalPrice, extractNumber } from "utils/utils";
 import SummaryAndCheckout from "../SummaryAndCheckout/SummaryAndCheckout";
+import { global } from "styled-jsx/css";
 
 export default function ModalForm(props) {
   const { startDate, count, setCount, tourData, showReserveBtn } = props;
 
   // console.log(count.duration);
   // console.log(tourData);
-
-  const updateBookPrice = () => {
-    let price;
-    // console.log("Adults :", count.adults);
-    // console.log("Kids :", count.kids);
-    if (count.duration == 1) {
-      price =
-        count.adults * tourData.price_adult + count.kids * tourData.price_kid;
-    } else {
-      price =
-        count.adults * tourData.price_adult_2h +
-        count.kids * tourData.price_kid_2h;
-    }
-    document.getElementById("bookNowButton").innerText = `$${price} Book Now`;
-  };
-
-  updateBookPrice();
 
   const { total } = count;
 
@@ -58,9 +42,31 @@ export default function ModalForm(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isModalVisible, total]);
 
+  const bookNowButtonRef = useRef(null);
+
+  const updateBookPrice = () => {
+    let price;
+    if (count.duration == 1) {
+      price =
+        count.adults * tourData.price_adult + count.kids * tourData.price_kid;
+    } else {
+      price =
+        count.adults * tourData.price_adult_2h +
+        count.kids * tourData.price_kid_2h;
+    }
+    bookNowButtonRef.current.innerText = `$${price} Book Now`;
+  };
+
+  updateBookPrice();
+
   return (
     <>
-      <div onClick={showModal} className="book-now-btn" id="bookNowButton">
+      <div
+        onClick={showModal}
+        ref={bookNowButtonRef}
+        className="book-now-btn"
+        id="bookNowButton"
+      >
         $258 Book Now
       </div>
       <Modal

@@ -3,7 +3,8 @@ import ModalForm from "../ModalForm/ModalForm";
 import QuantitySelectors from "../QuantitySelectors/QuantitySelectors";
 import styles from "../../../styles/bookform.module.css";
 import DatePicker from "components/DatePicker/DatePicker";
-import { useState } from "react";
+import { useState, useRef } from "react";
+
 const BookingFormContent = (props) => {
   const {
     header,
@@ -49,10 +50,17 @@ const BookingFormContent = (props) => {
         });
   };
 
-  const toggleHours = (id1, id2) => {
-    document.getElementById(id1).style.background = "#1b3d02";
-    document.getElementById(id2).style.background = "#5ba205";
-    count.duration = id1.includes("1") ? 1 : 2;
+  const hoursRef1 = useRef(null);
+  const hoursRef2 = useRef(null);
+
+  const toggleHours = (ref1, ref2) => {
+    // document.getElementById(id1).style.background = "#1b3d02";
+    // document.getElementById(id2).style.background = "#5ba205";
+
+    ref1.current.style.background = "#1b3d02";
+    ref2.current.style.background = "#5ba205";
+
+    count.duration = ref1.current.innerText.includes("1") ? 1 : 2;
     updateBookPrice();
   };
 
@@ -142,15 +150,15 @@ const BookingFormContent = (props) => {
               <div className={styles.slot_container}>
                 <div
                   className={styles.slot_item}
-                  id="1hour"
-                  onClick={() => toggleHours("1hour", "2hour")}
+                  ref={hoursRef1}
+                  onClick={() => toggleHours(hoursRef1, hoursRef2)}
                 >
                   1 Hour
                 </div>
                 <div
                   className={styles.slot_item_2}
-                  id="2hour"
-                  onClick={() => toggleHours("2hour", "1hour")}
+                  ref={hoursRef2}
+                  onClick={() => toggleHours(hoursRef2, hoursRef1)}
                 >
                   2 Hours
                 </div>

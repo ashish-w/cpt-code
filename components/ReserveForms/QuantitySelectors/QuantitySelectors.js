@@ -1,21 +1,6 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const QuantitySelectors = ({ setCount, count, tourData, maxDuration }) => {
-  const updateBookPrice = () => {
-    let price;
-    if (count.duration == 1) {
-      price =
-        count.adults * tourData.price_adult + count.kids * tourData.price_kid;
-    } else {
-      price =
-        count.adults * tourData.price_adult_2h +
-        count.kids * tourData.price_kid_2h;
-    }
-    document.getElementById("bookNowButton").innerText = `$${price} Book Now`;
-  };
-
-  updateBookPrice();
-
   return (
     <>
       <div
