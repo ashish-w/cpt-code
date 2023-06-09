@@ -6,6 +6,26 @@ import SummaryAndCheckout from "../SummaryAndCheckout/SummaryAndCheckout";
 export default function ModalForm(props) {
   const { startDate, count, setCount, tourData, showReserveBtn } = props;
 
+  // console.log(count.duration);
+  // console.log(tourData);
+
+  const updateBookPrice = () => {
+    let price;
+    // console.log("Adults :", count.adults);
+    // console.log("Kids :", count.kids);
+    if (count.duration == 1) {
+      price =
+        count.adults * tourData.price_adult + count.kids * tourData.price_kid;
+    } else {
+      price =
+        count.adults * tourData.price_adult_2h +
+        count.kids * tourData.price_kid_2h;
+    }
+    document.getElementById("bookNowButton").innerText = `$${price} Book Now`;
+  };
+
+  updateBookPrice();
+
   const { total } = count;
 
   const { fixedDuration, title } = tourData;
@@ -40,7 +60,7 @@ export default function ModalForm(props) {
 
   return (
     <>
-      <div onClick={showModal} className="book-now-btn">
+      <div onClick={showModal} className="book-now-btn" id="bookNowButton">
         $258 Book Now
       </div>
       <Modal

@@ -52,6 +52,8 @@ const BookingFormContent = (props) => {
   const toggleHours = (id1, id2) => {
     document.getElementById(id1).style.background = "#1b3d02";
     document.getElementById(id2).style.background = "#5ba205";
+    count.duration = id1.includes("1") ? 1 : 2;
+    updateBookPrice();
   };
 
   const toggleday = (id1) => {
@@ -68,6 +70,19 @@ const BookingFormContent = (props) => {
       document.getElementById(i + "booktime").style.background = "#5ba205";
     }
     document.getElementById(id1).style.background = "#1b3d02";
+  };
+
+  const updateBookPrice = () => {
+    let price;
+    if (count.duration == 1) {
+      price =
+        count.adults * tourData.price_adult + count.kids * tourData.price_kid;
+    } else {
+      price =
+        count.adults * tourData.price_adult_2h +
+        count.kids * tourData.price_kid_2h;
+    }
+    document.getElementById("bookNowButton").innerText = `$${price} Book Now`;
   };
 
   return (

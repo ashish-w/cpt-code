@@ -1,6 +1,21 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const QuantitySelectors = ({ setCount, count, tourData, maxDuration }) => {
+  const updateBookPrice = () => {
+    let price;
+    if (count.duration == 1) {
+      price =
+        count.adults * tourData.price_adult + count.kids * tourData.price_kid;
+    } else {
+      price =
+        count.adults * tourData.price_adult_2h +
+        count.kids * tourData.price_kid_2h;
+    }
+    document.getElementById("bookNowButton").innerText = `$${price} Book Now`;
+  };
+
+  updateBookPrice();
+
   return (
     <>
       <div
@@ -22,12 +37,12 @@ const QuantitySelectors = ({ setCount, count, tourData, maxDuration }) => {
           >
             <div
               className="cursor-pointer text-normal"
-              onClick={(e) =>
+              onClick={(e) => {
                 setCount({
                   ...count,
                   adults: count.adults > 1 ? count.adults - 1 : 0,
-                })
-              }
+                });
+              }}
             >
               -
             </div>
@@ -41,7 +56,9 @@ const QuantitySelectors = ({ setCount, count, tourData, maxDuration }) => {
             <div
               className="cursor-pointer text-normal"
               style={{ color: "#5ba205" }}
-              onClick={(e) => setCount({ ...count, adults: count.adults + 1 })}
+              onClick={(e) => {
+                setCount({ ...count, adults: count.adults + 1 });
+              }}
             >
               +
             </div>
@@ -59,12 +76,12 @@ const QuantitySelectors = ({ setCount, count, tourData, maxDuration }) => {
           >
             <div
               className="cursor-pointer text-normal"
-              onClick={(e) =>
+              onClick={(e) => {
                 setCount({
                   ...count,
                   kids: count.kids > 1 ? count.kids - 1 : 0,
-                })
-              }
+                });
+              }}
             >
               -
             </div>
@@ -81,7 +98,9 @@ const QuantitySelectors = ({ setCount, count, tourData, maxDuration }) => {
             <div
               className="cursor-pointer text-normal"
               style={{ color: "#5ba205" }}
-              onClick={(e) => setCount({ ...count, kids: count.kids + 1 })}
+              onClick={(e) => {
+                setCount({ ...count, kids: count.kids + 1 });
+              }}
             >
               +
             </div>
