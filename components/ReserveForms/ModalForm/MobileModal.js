@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Modal } from "antd";
 import {
@@ -12,6 +12,9 @@ import {
 import RequestFormContent from "../RequestFormContent/RequestForm";
 import QuantitySelectors from "../QuantitySelectors/QuantitySelectors";
 import ModalForm from "./ModalForm";
+import styles from "../../../styles/bookform.module.css";
+import ButtonsGroup from "../Buttons/ButtonsGroup";
+import DatePicker from "components/DatePicker/DatePicker";
 
 const MobileModal = (props) => {
   const {
@@ -81,6 +84,62 @@ const MobileModal = (props) => {
     closeMainModal();
   };
 
+  const [shouldOpenCalendar, setShouldOpenCalendar] = useState(false);
+
+  const openCalendar = () => {
+    setShouldOpenCalendar(true);
+  };
+  const closeCalendar = () => {
+    setShouldOpenCalendar(false);
+  };
+  const toggleCalendarStatus = () => {
+    setShouldOpenCalendar(!shouldOpenCalendar);
+  };
+
+  const getTimeOptions = () => {
+    let options = [];
+
+    [...Array(16)].map((x, i) => {
+      let now = new Date();
+      now.setHours(9);
+      now.setMinutes(0);
+      now.setMilliseconds(0);
+
+      now = new Date(now.getTime() + 1800000 * i);
+
+      options.push(
+        now.getMinutes()
+          ? now.toLocaleString("en-US", {
+              hour: "numeric",
+              minute: "numeric",
+              hour12: true,
+            })
+          : now.toLocaleString("en-US", {
+              hour: "numeric",
+              hour12: true,
+            })
+      );
+    });
+
+    return options;
+  };
+
+  const getDayOptions = () => {
+    let options = [];
+    [...Array(6)].map((val, i) => {
+      options.push([
+        new Date(new Date().getTime() + 86400000 * i).toString()[0],
+        new Date(new Date().getTime() + 86400000 * i).getDate(),
+      ]);
+    });
+    return options;
+  };
+
+  const getDurationOptions = () => {
+    let options = ["1 Hour", "2 Hours"];
+    return options;
+  };
+
   return (
     <>
       <button
@@ -110,21 +169,45 @@ const MobileModal = (props) => {
               <div className="container d-flex justify-content-center">
                 <div className="row">
                   <div className="col text-center">
-                    <p className="book-title">Book Now</p>
-                    <div className="form-group datepicker">
-                      <DatePicker
-                        className="form-control"
-                        selected={startDate}
-                        onChange={(date) => (
-                          setStartDate(date),
-                          setCount({ ...count, tourDate: date })
-                        )}
-                        showTimeSelect
-                        minDate={new Date()}
-                        minTime={setHours(setMinutes(new Date(), 0), 9)}
-                        maxTime={setHours(setMinutes(new Date(), 30), 17)}
-                        dateFormat="MMMM d, yyyy h:mm aa"
-                        customInput={<CustomInput />}
+                    <p className="book-title">
+                      {(tourData?.title).includes("Pedi")
+                        ? "Book Your Pedicab Tour"
+                        : ""}
+                    </p>
+
+                    <div className={styles.slot_container}>
+                      <ButtonsGroup
+                        type="DurationButtons"
+                        options={getDurationOptions()}
+                        count={count}
+                        setCount={setCount}
+                      />
+                    </div>
+
+                    <div className={styles.date_container_section}>
+                      <div className={styles.date_container}>
+                        <ButtonsGroup
+                          type="DayButtons"
+                          options={getDayOptions()}
+                          count={count}
+                          setCount={setCount}
+                        />
+                      </div>
+
+                      <span
+                        className={styles.chevron_right_date}
+                        onClick={toggleCalendarStatus}
+                      >{`>`}</span>
+                    </div>
+
+                    {shouldOpenCalendar ? <DatePicker /> : ""}
+
+                    <div className={styles.time_slot_container}>
+                      <ButtonsGroup
+                        type="TimeButtons"
+                        options={getTimeOptions()}
+                        count={count}
+                        setCount={setCount}
                       />
                     </div>
 
@@ -135,26 +218,72 @@ const MobileModal = (props) => {
                       maxDuration={maxDuration}
                     />
 
-                    <p className="text-uppercase" style={{ fontSize: 14 }}>
-                      Price from {""}
-                      <b style={{ fontSize: 24, color: "#313030" }}>
-                        ${findStartingPrice}
-                      </b>{" "}
-                      usd
-                    </p>
-
+                    {/* <p className="text-uppercase" style={{ fontSize: 14 }}>
+                Price from {""}
+                <b style={{ fontSize: 24, color: "#313030" }}>
+                  ${findStartingPrice}
+                </b>{" "}
+                usd
+              </p> */}
                     <ModalForm
                       count={count}
                       setCount={setCount}
                       tourData={tourData}
                       startDate={startDate}
-                      showReserveBtn={showReserveBtn}
                     />
                   </div>
                 </div>
               </div>
             </form>
           ) : (
+            // <form>
+            //   <div className="container d-flex justify-content-center">
+            //     <div className="row">
+            //       <div className="col text-center">
+            //         <p className="book-title">Book Now</p>
+            //         <div className="form-group datepicker">
+            //           <DatePicker
+            //             className="form-control"
+            //             selected={startDate}
+            //             onChange={(date) => (
+            //               setStartDate(date),
+            //               setCount({ ...count, tourDate: date })
+            //             )}
+            //             showTimeSelect
+            //             minDate={new Date()}
+            //             minTime={setHours(setMinutes(new Date(), 0), 9)}
+            //             maxTime={setHours(setMinutes(new Date(), 30), 17)}
+            //             dateFormat="MMMM d, yyyy h:mm aa"
+            //             customInput={<CustomInput />}
+            //           />
+            //         </div>
+
+            //         <QuantitySelectors
+            //           count={count}
+            //           setCount={setCount}
+            //           tourData={tourData}
+            //           maxDuration={maxDuration}
+            //         />
+
+            //         <p className="text-uppercase" style={{ fontSize: 14 }}>
+            //           Price from {""}
+            //           <b style={{ fontSize: 24, color: "#313030" }}>
+            //             ${findStartingPrice}
+            //           </b>{" "}
+            //           usd
+            //         </p>
+
+            //         <ModalForm
+            //           count={count}
+            //           setCount={setCount}
+            //           tourData={tourData}
+            //           startDate={startDate}
+            //           showReserveBtn={showReserveBtn}
+            //         />
+            //       </div>
+            //     </div>
+            //   </div>
+            // </form>
             <RequestFormContent
               setHours={setHours}
               setMinutes={setMinutes}
