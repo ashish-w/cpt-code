@@ -42,6 +42,19 @@
   cursor: pointer;
   font-size: small;
   font-weight: bold;
+  color: black;
+}
+
+.single_date_selected {
+  border-radius: 8px;
+  background: #1b3d02;
+  padding: 5px 12px;
+  display: grid;
+  gap: 4px;
+  cursor: pointer;
+  font-size: small;
+  font-weight: bold;
+  color: white;
 }
 
 .chevron_right_date {
@@ -67,6 +80,15 @@
   padding: 3px 7px;
   border-radius: 6px;
   background: #5ba205;
+  color: white;
+  font-size: smaller;
+  cursor: pointer;
+}
+
+.time_slot_selected {
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: #1b3d02;
   color: white;
   font-size: smaller;
   cursor: pointer;

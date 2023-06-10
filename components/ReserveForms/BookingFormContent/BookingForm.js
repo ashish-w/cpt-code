@@ -4,6 +4,7 @@ import QuantitySelectors from "../QuantitySelectors/QuantitySelectors";
 import styles from "../../../styles/bookform.module.css";
 import DatePicker from "components/DatePicker/DatePicker";
 import { useState, useRef } from "react";
+import ButtonsGroup from "../Buttons/ButtonsGroup";
 
 const BookingFormContent = (props) => {
   const {
@@ -30,33 +31,49 @@ const BookingFormContent = (props) => {
     setShouldOpenCalendar(!shouldOpenCalendar);
   };
 
-  const getTimeString = (iter) => {
-    let now = new Date();
-    now.setHours(9);
-    now.setMinutes(0);
-    now.setMilliseconds(0);
+  const getTimeOptions = () => {
+    let options = [];
 
-    now = new Date(now.getTime() + 1800000 * iter);
+    [...Array(16)].map((x, i) => {
+      let now = new Date();
+      now.setHours(9);
+      now.setMinutes(0);
+      now.setMilliseconds(0);
 
-    return now.getMinutes()
-      ? now.toLocaleString("en-US", {
-          hour: "numeric",
-          minute: "numeric",
-          hour12: true,
-        })
-      : now.toLocaleString("en-US", {
-          hour: "numeric",
-          hour12: true,
-        });
+      now = new Date(now.getTime() + 1800000 * i);
+
+      options.push(
+        now.getMinutes()
+          ? now.toLocaleString("en-US", {
+              hour: "numeric",
+              minute: "numeric",
+              hour12: true,
+            })
+          : now.toLocaleString("en-US", {
+              hour: "numeric",
+              hour12: true,
+            })
+      );
+    });
+
+    return options;
+  };
+
+  const getDayOptions = () => {
+    let options = [];
+    [...Array(6)].map((val, i) => {
+      options.push([
+        new Date(new Date().getTime() + 86400000 * i).toString()[0],
+        new Date(new Date().getTime() + 86400000 * i).getDate(),
+      ]);
+    });
+    return options;
   };
 
   const hoursRef1 = useRef(null);
   const hoursRef2 = useRef(null);
 
   const toggleHours = (ref1, ref2) => {
-    // document.getElementById(id1).style.background = "#1b3d02";
-    // document.getElementById(id2).style.background = "#5ba205";
-
     ref1.current.style.background = "#1b3d02";
     ref2.current.style.background = "#5ba205";
 
@@ -71,13 +88,6 @@ const BookingFormContent = (props) => {
     }
     document.getElementById(id1).style.background = "#1b3d02";
     document.getElementById(id1).style.color = "#ffffff";
-  };
-
-  const togglebtime = (id1) => {
-    for (let i = 0; i < 16; ++i) {
-      document.getElementById(i + "booktime").style.background = "#5ba205";
-    }
-    document.getElementById(id1).style.background = "#1b3d02";
   };
 
   const updateBookPrice = () => {
@@ -146,7 +156,12 @@ const BookingFormContent = (props) => {
         <div className="container d-flex justify-content-center">
           <div className="row">
             <div className="col text-center">
-              <p className="book-title">{tourData?.title}</p>
+              <p className="book-title">
+                {(tourData?.title).includes("Pedi")
+                  ? "Book Your Pedicab Tour"
+                  : ""}
+              </p>
+
               <div className={styles.slot_container}>
                 <div
                   className={styles.slot_item}
@@ -163,31 +178,10 @@ const BookingFormContent = (props) => {
                   2 Hours
                 </div>
               </div>
+
               <div className={styles.date_container_section}>
                 <div className={styles.date_container}>
-                  {[...Array(6)].map((val, i) => {
-                    return (
-                      <div
-                        className={styles.single_date}
-                        key={i}
-                        id={i + "wday"}
-                        onClick={() => toggleday(i + "wday")}
-                      >
-                        <span className="">
-                          {
-                            new Date(
-                              new Date().getTime() + 86400000 * i
-                            ).toString()[0]
-                          }
-                        </span>
-                        <span className="">
-                          {new Date(
-                            new Date().getTime() + 86400000 * i
-                          ).getDate()}
-                        </span>
-                      </div>
-                    );
-                  })}
+                  <ButtonsGroup type="DayButtons" options={getDayOptions()} />
                 </div>
 
                 <span
@@ -195,21 +189,13 @@ const BookingFormContent = (props) => {
                   onClick={toggleCalendarStatus}
                 >{`>`}</span>
               </div>
+
               {shouldOpenCalendar ? <DatePicker /> : ""}
+
               <div className={styles.time_slot_container}>
-                {[...Array(16)].map((x, i) => {
-                  return (
-                    <div
-                      className={styles.time_slot}
-                      key={i}
-                      id={i + "booktime"}
-                      onClick={() => togglebtime(i + "booktime")}
-                    >
-                      {getTimeString(i)}
-                    </div>
-                  );
-                })}
+                <ButtonsGroup type="TimeButtons" options={getTimeOptions()} />
               </div>
+
               <QuantitySelectors
                 count={count}
                 setCount={setCount}
