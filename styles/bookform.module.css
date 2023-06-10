@@ -3,10 +3,10 @@
   gap: 0.3rem;
 }
 
-.slot_item {
+.duration_button {
   border-radius: 0.5rem;
   padding: 4px 8px;
-  background: #1b3d02;
+  background: #5ba205;
   color: white;
   font-size:small;
   justify-content: center;
@@ -14,10 +14,11 @@
   display: flex;
   cursor: pointer;
 }
-.slot_item_2 {
+
+.duration_button_selected {
   border-radius: 0.5rem;
   padding: 4px 8px;
-  background: #5ba205;
+  background: #1b3d02;
   color: white;
   font-size: small;
   justify-content: center;

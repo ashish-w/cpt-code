@@ -45,6 +45,24 @@ const ButtonsGroup = ({ type, options }) => {
         ))}
       </>
     );
+  } else if (type == "DurationButtons") {
+    return (
+      <>
+        {options.map((option) => (
+          <div
+            key={option}
+            className={
+              selectedOption === option
+                ? styles.duration_button_selected
+                : styles.duration_button
+            }
+            onClick={() => handleOptionClick(option)}
+          >
+            {option}
+          </div>
+        ))}
+      </>
+    );
   }
 };
 

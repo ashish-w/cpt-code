@@ -5,6 +5,7 @@ import styles from "../../../styles/bookform.module.css";
 import DatePicker from "components/DatePicker/DatePicker";
 import { useState, useRef } from "react";
 import ButtonsGroup from "../Buttons/ButtonsGroup";
+import { useEffect } from "react";
 
 const BookingFormContent = (props) => {
   const {
@@ -70,24 +71,9 @@ const BookingFormContent = (props) => {
     return options;
   };
 
-  const hoursRef1 = useRef(null);
-  const hoursRef2 = useRef(null);
-
-  const toggleHours = (ref1, ref2) => {
-    ref1.current.style.background = "#1b3d02";
-    ref2.current.style.background = "#5ba205";
-
-    count.duration = ref1.current.innerText.includes("1") ? 1 : 2;
-    updateBookPrice();
-  };
-
-  const toggleday = (id1) => {
-    for (let i = 0; i < 6; ++i) {
-      document.getElementById(i + "wday").style.background = "#ffffff";
-      document.getElementById(i + "wday").style.color = "#000000";
-    }
-    document.getElementById(id1).style.background = "#1b3d02";
-    document.getElementById(id1).style.color = "#ffffff";
+  const getDurationOptions = () => {
+    let options = ["1 Hour", "2 Hours"];
+    return options;
   };
 
   const updateBookPrice = () => {
@@ -102,6 +88,8 @@ const BookingFormContent = (props) => {
     }
     document.getElementById("bookNowButton").innerText = `$${price} Book Now`;
   };
+
+  updateBookPrice();
 
   return (
     <div>
@@ -163,20 +151,10 @@ const BookingFormContent = (props) => {
               </p>
 
               <div className={styles.slot_container}>
-                <div
-                  className={styles.slot_item}
-                  ref={hoursRef1}
-                  onClick={() => toggleHours(hoursRef1, hoursRef2)}
-                >
-                  1 Hour
-                </div>
-                <div
-                  className={styles.slot_item_2}
-                  ref={hoursRef2}
-                  onClick={() => toggleHours(hoursRef2, hoursRef1)}
-                >
-                  2 Hours
-                </div>
+                <ButtonsGroup
+                  type="DurationButtons"
+                  options={getDurationOptions()}
+                />
               </div>
 
               <div className={styles.date_container_section}>
