@@ -13,7 +13,12 @@ const DatePicker = () => {
       }}
     >
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DateCalendar />
+        <DateCalendar
+          sx={{
+            height: "300px",
+            width: "250px",
+          }}
+        />
       </LocalizationProvider>
     </div>
   );

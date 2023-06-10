@@ -22,6 +22,7 @@ const BookingFormContent = (props) => {
   } = props;
 
   const [shouldOpenCalendar, setShouldOpenCalendar] = useState(false);
+
   const openCalendar = () => {
     setShouldOpenCalendar(true);
   };
@@ -86,7 +87,7 @@ const BookingFormContent = (props) => {
         count.adults * tourData.price_adult_2h +
         count.kids * tourData.price_kid_2h;
     }
-    document.getElementById("bookNowButton").innerText = `$${price} Book Now`;
+    // document.getElementById("bookNowButton").innerText = `$${price} Book Now`;
   };
 
   updateBookPrice();
@@ -154,12 +155,19 @@ const BookingFormContent = (props) => {
                 <ButtonsGroup
                   type="DurationButtons"
                   options={getDurationOptions()}
+                  count={count}
+                  setCount={setCount}
                 />
               </div>
 
               <div className={styles.date_container_section}>
                 <div className={styles.date_container}>
-                  <ButtonsGroup type="DayButtons" options={getDayOptions()} />
+                  <ButtonsGroup
+                    type="DayButtons"
+                    options={getDayOptions()}
+                    count={count}
+                    setCount={setCount}
+                  />
                 </div>
 
                 <span
@@ -171,7 +179,12 @@ const BookingFormContent = (props) => {
               {shouldOpenCalendar ? <DatePicker /> : ""}
 
               <div className={styles.time_slot_container}>
-                <ButtonsGroup type="TimeButtons" options={getTimeOptions()} />
+                <ButtonsGroup
+                  type="TimeButtons"
+                  options={getTimeOptions()}
+                  count={count}
+                  setCount={setCount}
+                />
               </div>
 
               <QuantitySelectors

@@ -1,13 +1,17 @@
 import { useState } from "react";
 import styles from "../../../styles/bookform.module.css";
 
-const ButtonsGroup = ({ type, options }) => {
-  const [selectedOption, setSelectedOption] = useState(false);
+const ButtonsGroup = ({ type, options, count, setCount }) => {
+  const [selectedOption, setSelectedOption] = useState(
+    options.length > 0 ? options[0] : false
+  );
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
   };
-
+  const handleDurationClick = (option) => {
+    setCount({ ...count, duration: option });
+  };
   if (type == "TimeButtons") {
     return (
       <>
@@ -48,7 +52,7 @@ const ButtonsGroup = ({ type, options }) => {
   } else if (type == "DurationButtons") {
     return (
       <>
-        {options.map((option) => (
+        {options.map((option, index) => (
           <div
             key={option}
             className={
@@ -56,7 +60,10 @@ const ButtonsGroup = ({ type, options }) => {
                 ? styles.duration_button_selected
                 : styles.duration_button
             }
-            onClick={() => handleOptionClick(option)}
+            onClick={() => {
+              handleOptionClick(option);
+              handleDurationClick(index + 1);
+            }}
           >
             {option}
           </div>
