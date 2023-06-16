@@ -13,6 +13,7 @@ export default function ModalForm(props) {
 
   const childRef = useRef();
 
+  console.log(count);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState("");

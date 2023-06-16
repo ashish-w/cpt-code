@@ -1,16 +1,45 @@
 import { useState } from "react";
 import styles from "../../../styles/bookform.module.css";
 
-const ButtonsGroup = ({ type, options, count, setCount }) => {
+const ButtonsGroup = (props) => {
+  const { enabled, type, options, count, setCount } = props;
+
   const [selectedOption, setSelectedOption] = useState(
     options.length > 0 ? options[0] : false
   );
 
   const handleOptionClick = (option) => {
-    setSelectedOption(option);
+    if (enabled) {
+      setSelectedOption(option);
+
+      if (type == "DayButtons") {
+        count.tourDate.setDate(option);
+        if (new Date().getDate() > option) {
+          count.tourDate.setMonth(
+            new Date(new Date().getTime() + 1728000000).getMonth()
+          );
+        }
+      } else if (type == "TimeButtons") {
+        let minutes = option.includes(":")
+          ? +option.split(":")[1].slice(0, 3)
+          : 0;
+
+        count.tourDate.setMinutes(minutes);
+
+        let hours = option.includes("AM")
+          ? option.includes(":")
+            ? +option.split(":")[0]
+            : +option.slice(0, 2)
+          : option.includes(":")
+          ? +option.split(":")[0] + 12
+          : +option.slice(0, 2) + 12;
+
+        count.tourDate.setHours(hours);
+      }
+    }
   };
   const handleDurationClick = (option) => {
-    setCount({ ...count, duration: option });
+    if (enabled) setCount({ ...count, duration: option });
   };
   if (type == "TimeButtons") {
     return (
@@ -19,7 +48,7 @@ const ButtonsGroup = ({ type, options, count, setCount }) => {
           <div
             key={option}
             className={
-              selectedOption === option
+              selectedOption === option && enabled
                 ? styles.time_slot_selected
                 : styles.time_slot
             }
@@ -36,7 +65,7 @@ const ButtonsGroup = ({ type, options, count, setCount }) => {
         {options.map((option) => (
           <div
             className={
-              selectedOption === option[1]
+              selectedOption === option[1] && enabled
                 ? styles.single_date_selected
                 : styles.single_date
             }
@@ -56,7 +85,7 @@ const ButtonsGroup = ({ type, options, count, setCount }) => {
           <div
             key={option}
             className={
-              selectedOption === option
+              selectedOption === option && enabled
                 ? styles.duration_button_selected
                 : styles.duration_button
             }
