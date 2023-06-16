@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Modal } from "antd";
 import {
@@ -85,15 +84,11 @@ const MobileModal = (props) => {
   };
 
   const [shouldOpenCalendar, setShouldOpenCalendar] = useState(false);
+  const [daysButtonEnabled, setDaysButtonEnable] = useState(true);
 
-  const openCalendar = () => {
-    setShouldOpenCalendar(true);
-  };
-  const closeCalendar = () => {
-    setShouldOpenCalendar(false);
-  };
   const toggleCalendarStatus = () => {
     setShouldOpenCalendar(!shouldOpenCalendar);
+    setDaysButtonEnable(!daysButtonEnabled);
   };
 
   const getTimeOptions = () => {
@@ -127,10 +122,8 @@ const MobileModal = (props) => {
   const getDayOptions = () => {
     let options = [];
     [...Array(6)].map((val, i) => {
-      options.push([
-        new Date(new Date().getTime() + 86400000 * i).toString()[0],
-        new Date(new Date().getTime() + 86400000 * i).getDate(),
-      ]);
+      let date = new Date(new Date().getTime() + 86400000 * i);
+      options.push([date.toString()[0], date.getDate()]);
     });
     return options;
   };
@@ -173,20 +166,29 @@ const MobileModal = (props) => {
                       {(tourData?.title).includes("Pedi")
                         ? "Book Your Pedicab Tour"
                         : ""}
+                      {(tourData?.title).includes("Bike Tour")
+                        ? "Book Your Bike Tour"
+                        : ""}
                     </p>
 
-                    <div className={styles.slot_container}>
-                      <ButtonsGroup
-                        type="DurationButtons"
-                        options={getDurationOptions()}
-                        count={count}
-                        setCount={setCount}
-                      />
-                    </div>
+                    {(tourData?.title).includes("Pedi") ? (
+                      <div className={styles.slot_container}>
+                        <ButtonsGroup
+                          enabled={true}
+                          type="DurationButtons"
+                          options={getDurationOptions()}
+                          count={count}
+                          setCount={setCount}
+                        />
+                      </div>
+                    ) : (
+                      "Duration: 2 Hours"
+                    )}
 
                     <div className={styles.date_container_section}>
                       <div className={styles.date_container}>
                         <ButtonsGroup
+                          enabled={daysButtonEnabled}
                           type="DayButtons"
                           options={getDayOptions()}
                           count={count}
@@ -194,16 +196,28 @@ const MobileModal = (props) => {
                         />
                       </div>
 
-                      <span
-                        className={styles.chevron_right_date}
-                        onClick={toggleCalendarStatus}
-                      >{`>`}</span>
+                      {shouldOpenCalendar ? (
+                        <>
+                          <span
+                            className={styles.chevron_right_date}
+                            onClick={toggleCalendarStatus}
+                          >{`<`}</span>
+                        </>
+                      ) : (
+                        <>
+                          <span
+                            className={styles.chevron_right_date}
+                            onClick={toggleCalendarStatus}
+                          >{`>`}</span>
+                        </>
+                      )}
                     </div>
 
-                    {shouldOpenCalendar ? <DatePicker /> : ""}
+                    {shouldOpenCalendar ? <DatePicker count={count} /> : ""}
 
                     <div className={styles.time_slot_container}>
                       <ButtonsGroup
+                        enabled={true}
                         type="TimeButtons"
                         options={getTimeOptions()}
                         count={count}
