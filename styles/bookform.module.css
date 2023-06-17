@@ -36,7 +36,7 @@
 
 .single_date {
   border-radius: 8px;
-  background: white;
+  background: #f4f4f4;
   padding: 5px 12px;
   display: grid;
   gap: 4px;
@@ -44,6 +44,7 @@
   font-size: small;
   font-weight: bold;
   color: black;
+  /* background: #5ba205; */
 }
 
 .single_date_selected {
