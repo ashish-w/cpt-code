@@ -12,12 +12,14 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import NextNProgress from "nextjs-progressbar";
 import Script from "next/script";
+import WeatherBar from "components/WeatherBar/WeatherBar";
 
 config.autoAddCss = false;
 
 export default function App({ Component, pageProps }) {
   return (
     <>
+      <WeatherBar />
       <NextNProgress
         color="#88bc2c"
         startPosition={0.3}
