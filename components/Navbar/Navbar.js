@@ -13,6 +13,7 @@ import {
 } from "utils/utils";
 import dynamic from "next/dynamic";
 import Script from "next/script";
+import WeatherBar from "components/WeatherBar/WeatherBar";
 
 const NoSsr = ({ children }) => <>{children}</>;
 
@@ -117,6 +118,7 @@ const NavBar = (props) => {
 
   return (
     <>
+      <WeatherBar />
       <NoSsr>
         <Head>
           <title>{title}</title>

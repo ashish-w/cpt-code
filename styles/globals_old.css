@@ -175,6 +175,18 @@ a:hover {
   padding-top: 70px;
 }
 
+.pt-60 {
+  padding-top: 60px;
+}
+
+.pt-50 {
+  padding-top: 50px;
+}
+
+.pt-40 {
+  padding-top: 40px;
+}
+
 .pb-300 {
   padding-bottom: 300px;
 }

@@ -19,7 +19,6 @@ config.autoAddCss = false;
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <WeatherBar />
       <NextNProgress
         color="#88bc2c"
         startPosition={0.3}

@@ -97,7 +97,7 @@ export default function Home({ slugsData, toursData }) {
           <div className="d-flex h-100 text-center align-items-center">
             <div className="w-100 text-white pt-70">
               <div className="py-5">
-                <h2 className="display-4">Welcome to</h2>
+                <h2 className="display-4 pt-3">Welcome to</h2>
                 <h1 className="h1-title">Central Park Tours</h1>
                 <div className="horizontalLineXl" />
 
@@ -107,7 +107,7 @@ export default function Home({ slugsData, toursData }) {
                   </b>
                 </p>
 
-                <section className="pt-70">
+                <section className="pt-60">
                   <span className="btn-explore mx-auto">
                     <Link scroll={false} href="#explore">
                       EXPLORE THE TOURS

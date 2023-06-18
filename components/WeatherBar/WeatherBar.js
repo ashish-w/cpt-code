@@ -63,14 +63,28 @@ const WeatherBar = () => {
   getWeatherData2(40.7831, -73.9712, 40);
 
   return (
-    <Marquee
+    <div
       style={{
-        backgroundColor: "#0dff00",
-        fontWeight: 700,
+        position: "fixed",
+        top: 0,
+        width: "100%",
+        zIndex: "9999",
+        height: "20px",
       }}
     >
-      {weatherData}
-    </Marquee>
+      <Marquee
+        style={{
+          backgroundColor: "#0dff00",
+          fontWeight: 700,
+          fontSize: "12px",
+          color: "black",
+          height: "20px",
+          alignItems: "center",
+        }}
+      >
+        {weatherData}
+      </Marquee>
+    </div>
   );
 };
 
