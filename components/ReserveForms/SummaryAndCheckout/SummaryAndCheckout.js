@@ -152,7 +152,7 @@ const SummaryAndCheckout = (props) => {
                   justifyContent: "center",
                 }}
               >
-                Traveler's Information
+                Traveler&apos;s Information
               </p>
               <div className="form-group centered-row pb-2">
                 <input
