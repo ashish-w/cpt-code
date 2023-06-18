@@ -52,6 +52,11 @@ const SummaryAndCheckout = (props) => {
     setCount({ ...count, [e.target.name]: e.target.value });
     // console.log({ [e.target.name]: e.target.value });
   };
+  const onHandleChange1 = (e) => {
+    // console.log(e);
+    // setCount({ ...count, [e.target.name]: e.target.value });
+    // console.log({ [e.target.name]: e.target.value });
+  };
 
   async function applyDiscount() {
     try {
@@ -190,7 +195,7 @@ const SummaryAndCheckout = (props) => {
 
               <div className="form-group centered-row pb-2">
                 <PhoneInput
-                  disabled
+                  // disabled
                   style={{
                     borderRadius: "20px",
                     backgroundColor: "#f4f4f4",
@@ -203,7 +208,7 @@ const SummaryAndCheckout = (props) => {
                   required
                   value={phone}
                   name="phone"
-                  onChange={onHandleChange}
+                  onChange={onHandleChange1}
                   placeholder="Phone Number"
                 />
               </div>
