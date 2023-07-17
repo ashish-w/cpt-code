@@ -1,0 +1,97 @@
+.slot_container {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.duration_button {
+  border-radius: 0.5rem;
+  padding: 4px 8px;
+  background: #5ba205;
+  color: white;
+  font-size:small;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
+
+.duration_button_selected {
+  border-radius: 0.5rem;
+  padding: 4px 8px;
+  background: #1b3d02;
+  color: white;
+  font-size: small;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
+
+.date_container {
+  display: flex;
+  gap: 0.4rem;
+  margin: 1rem 0;
+  flex-grow: 1;
+}
+
+.single_date {
+  border-radius: 8px;
+  background: #f4f4f4;
+  padding: 5px 12px;
+  display: grid;
+  gap: 4px;
+  cursor: pointer;
+  font-size: small;
+  font-weight: bold;
+  color: black;
+  /* background: #5ba205; */
+}
+
+.single_date_selected {
+  border-radius: 8px;
+  background: #1b3d02;
+  padding: 5px 12px;
+  display: grid;
+  gap: 4px;
+  cursor: pointer;
+  font-size: small;
+  font-weight: bold;
+  color: white;
+}
+
+.chevron_right_date {
+  font-size: 2rem;
+  color: gray;
+  cursor: pointer;
+}
+
+.date_container_section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.time_slot_container {
+  display: grid;
+  gap: 0.4rem;
+  grid-template-columns: repeat(4, 1fr);
+  font-size: small;
+}
+
+.time_slot {
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: #5ba205;
+  color: white;
+  font-size: smaller;
+  cursor: pointer;
+}
+
+.time_slot_selected {
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: #1b3d02;
+  color: white;
+  font-size: smaller;
+  cursor: pointer;
+}
