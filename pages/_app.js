@@ -13,7 +13,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import NextNProgress from "nextjs-progressbar";
 import Script from "next/script";
 import WeatherBar from "components/WeatherBar/WeatherBar";
-import WhatsAppButton from "components/whatsAppButton/whatsAppButton";
+import WhatsApp from "components/WhatsApp/WhatsApp";
 
 config.autoAddCss = false;
 
@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }) {
         height={2}
       />
 
-      <WhatsAppButton/>
+      <WhatsApp/>
 
       <Component {...pageProps} />
     </>

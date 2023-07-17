@@ -1,6 +1,6 @@
 import React from 'react'
 
-const WhatsAppButton =  () => {
+const WhatsApp =  () => {
   return (
     <div className=''>
       <a href="https://api.whatsapp.com/send?phone=918130263311" target='_blank'>
@@ -10,4 +10,4 @@ const WhatsAppButton =  () => {
   )
 }
 
-export default WhatsAppButton
+export default WhatsApp
