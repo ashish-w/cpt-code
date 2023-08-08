@@ -23,7 +23,7 @@ const DatePicker = ({ count }) => {
         <DateCalendar
           sx={{
             height: "300px",
-            width: "250px",
+            width: "300px",
           }}
           onChange={(newValue) => setTourDate(newValue)}
         />

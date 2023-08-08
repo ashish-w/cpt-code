@@ -89,7 +89,7 @@ const Gallery = ({ tourData }) => {
     const onChange = (currentSlide) => {
         if (direction === "next") {
             mediaRef.current.goTo(currentSlide + 1, false);
-        } else {
+        } if((direction === "prev")) {
             mediaRef.current.goTo(currentSlide - 1, false);
         }
     };

@@ -33,6 +33,8 @@ const SummaryAndCheckout = (props) => {
     discount,
   } = count;
 
+  console.log("Duration:", duration);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setPaymentStatus("LOADING");
@@ -54,9 +56,8 @@ const SummaryAndCheckout = (props) => {
   };
   const onHandleChange1 = (e) => {
     console.log(e);
-    setCount({ ...count, "phone": e });
+    setCount({ ...count, phone: e });
     console.log(count.phone);
-
   };
 
   async function applyDiscount() {
@@ -290,10 +291,38 @@ const SummaryAndCheckout = (props) => {
                         fontWeight: 500,
                       }}
                     >
+                      Date
+                    </div>
+                    <div
+                      className="col-6 d-flex"
+                      style={{
+                        justifyContent: "right",
+                        fontWeight: 700,
+                      }}
+                    >
+                      {`${new Date(count.tourDate).toLocaleString("en-US", {
+                        month: "short",
+                        day: "2-digit",
+                        year: "numeric",
+                        weekday: "short",
+                        hour: "2-digit",
+                        hour12: false,
+                        minute: "2-digit",
+                      })} Hours`}
+                    </div>
+                  </div>
+
+                  <div className="row mb-2">
+                    <div
+                      className="col-6"
+                      style={{
+                        fontWeight: 500,
+                      }}
+                    >
                       {adults} {adults > 1 ? "Adults" : "Adult"} x $
                       {duration == 1
                         ? tourData.price_adult
-                        : tourData.price_adult_2}
+                        : tourData.price_adult_2h}
                     </div>
                     <div
                       className="col-6 d-flex"
@@ -307,7 +336,7 @@ const SummaryAndCheckout = (props) => {
                           adults *
                           (duration == 1
                             ? tourData.price_adult
-                            : tourData.price_adult_2)
+                            : tourData.price_adult_2h)
                         ).toFixed(2)
                       ).toLocaleString("en-US", {
                         style: "currency",
@@ -480,6 +509,91 @@ const SummaryAndCheckout = (props) => {
             >
               Billing Information
             </p>
+
+            <div className="form-group centered-row pb-2">
+              <input
+                style={{
+                  borderRadius: "20px",
+                  backgroundColor: "#f4f4f4",
+                  border: "none",
+                }}
+                className="form-control"
+                required
+                onChange={onHandleChange}
+                // value={}
+                name="name"
+                type="text"
+                placeholder="Cardholder's Name"
+              />
+            </div>
+            <div className="form-group centered-row pb-2">
+              <input
+                style={{
+                  borderRadius: "20px",
+                  backgroundColor: "#f4f4f4",
+                  border: "none",
+                }}
+                className="form-control"
+                required
+                onChange={onHandleChange}
+                // value={}
+                name="billingAddress"
+                type="text"
+                placeholder="Billing Address"
+              />
+            </div>
+
+            <div className="row mb-3">
+              <div className="col-4">
+                <input
+                  style={{
+                    borderRadius: "20px",
+                    backgroundColor: "#f4f4f4",
+                    border: "none",
+                  }}
+                  className="form-control"
+                  required
+                  onChange={onHandleChange}
+                  // value={}
+                  name="city"
+                  type="text"
+                  placeholder="City"
+                />
+              </div>
+              <div className="col-4">
+                <input
+                  style={{
+                    borderRadius: "20px",
+                    backgroundColor: "#f4f4f4",
+                    border: "none",
+                  }}
+                  className="form-control"
+                  required
+                  onChange={onHandleChange}
+                  // value={}
+                  name="state"
+                  type="text"
+                  placeholder="State"
+                />
+              </div>
+              <div className="col-4">
+                <input
+                  style={{
+                    borderRadius: "20px",
+                    backgroundColor: "#f4f4f4",
+                    border: "none",
+                  }}
+                  className="form-control"
+                  required
+                  onChange={onHandleChange}
+                  // value={}
+                  name="zip"
+                  type="text"
+                  placeholder="Zip"
+                />
+              </div>
+            </div>
+
             <div className="form-group centered-row d-block pb-2">
               {/* stripe/square */}
               <SquarePaymentForm
