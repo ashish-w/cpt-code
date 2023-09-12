@@ -33,6 +33,8 @@ const SummaryAndCheckout = (props) => {
     discount,
   } = count;
 
+  console.log("Duration:", duration);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setPaymentStatus("LOADING");
@@ -54,9 +56,8 @@ const SummaryAndCheckout = (props) => {
   };
   const onHandleChange1 = (e) => {
     console.log(e);
-    setCount({ ...count, "phone": e });
+    setCount({ ...count, phone: e });
     console.log(count.phone);
-
   };
 
   async function applyDiscount() {
@@ -277,9 +278,53 @@ const SummaryAndCheckout = (props) => {
                       className="col-6 d-flex"
                       style={{
                         justifyContent: "right",
+                        alignItems: "center"
                       }}
                     >
-                      Ratings
+                      <div style={{ paddingRight: "10px" }}>  </div>
+                      <svg
+                        viewBox="64 64 896 896"
+                        focusable="false"
+                        data-icon="star"
+                        width="1em"
+                        height="1em"
+                        fill="currentColor"
+                        aria-hidden="true"
+                        color="#f7e64f"
+                      >
+                        <path d="M908.1 353.1l-253.9-36.9L540.7 86.1c-3.1-6.3-8.2-11.4-14.5-14.5-15.8-7.8-35-1.3-42.9 14.5L369.8 316.2l-253.9 36.9c-7 1-13.4 4.3-18.3 9.3a32.05 32.05 0 00.6 45.3l183.7 179.1-43.4 252.9a31.95 31.95 0 0046.4 33.7L512 754l227.1 119.4c6.2 3.3 13.4 4.4 20.3 3.2 17.4-3 29.1-19.5 26.1-36.9l-43.4-252.9 183.7-179.1c5-4.9 8.3-11.3 9.3-18.3 2.7-17.5-9.5-33.7-27-36.3z"></path>
+                      </svg>
+                      <div style={{ paddingRight: "10px" }}>
+                      </div>
+                      {tourData.rating}
+                    </div>
+                  </div>
+
+                  <div className="row mb-2">
+                    <div
+                      className="col-6"
+                      style={{
+                        fontWeight: 500,
+                      }}
+                    >
+                      Date
+                    </div>
+                    <div
+                      className="col-6 d-flex"
+                      style={{
+                        justifyContent: "right",
+                        fontWeight: 700,
+                      }}
+                    >
+                      {`${new Date(count.tourDate).toLocaleString("en-US", {
+                        month: "short",
+                        day: "2-digit",
+                        year: "numeric",
+                        weekday: "short",
+                        hour: "2-digit",
+                        hour12: false,
+                        minute: "2-digit",
+                      })} Hours`}
                     </div>
                   </div>
 
@@ -293,7 +338,7 @@ const SummaryAndCheckout = (props) => {
                       {adults} {adults > 1 ? "Adults" : "Adult"} x $
                       {duration == 1
                         ? tourData.price_adult
-                        : tourData.price_adult_2}
+                        : tourData.price_adult_2h}
                     </div>
                     <div
                       className="col-6 d-flex"
@@ -307,7 +352,7 @@ const SummaryAndCheckout = (props) => {
                           adults *
                           (duration == 1
                             ? tourData.price_adult
-                            : tourData.price_adult_2)
+                            : tourData.price_adult_2h)
                         ).toFixed(2)
                       ).toLocaleString("en-US", {
                         style: "currency",
@@ -480,6 +525,91 @@ const SummaryAndCheckout = (props) => {
             >
               Billing Information
             </p>
+
+            <div className="form-group centered-row pb-2">
+              <input
+                style={{
+                  borderRadius: "20px",
+                  backgroundColor: "#f4f4f4",
+                  border: "none",
+                }}
+                className="form-control"
+                required
+                onChange={onHandleChange}
+                // value={}
+                name="name"
+                type="text"
+                placeholder="Cardholder's Name"
+              />
+            </div>
+            <div className="form-group centered-row pb-2">
+              <input
+                style={{
+                  borderRadius: "20px",
+                  backgroundColor: "#f4f4f4",
+                  border: "none",
+                }}
+                className="form-control"
+                required
+                onChange={onHandleChange}
+                // value={}
+                name="billingAddress"
+                type="text"
+                placeholder="Billing Address"
+              />
+            </div>
+
+            <div className="row mb-3">
+              <div className="col-4">
+                <input
+                  style={{
+                    borderRadius: "20px",
+                    backgroundColor: "#f4f4f4",
+                    border: "none",
+                  }}
+                  className="form-control"
+                  required
+                  onChange={onHandleChange}
+                  // value={}
+                  name="city"
+                  type="text"
+                  placeholder="City"
+                />
+              </div>
+              <div className="col-4">
+                <input
+                  style={{
+                    borderRadius: "20px",
+                    backgroundColor: "#f4f4f4",
+                    border: "none",
+                  }}
+                  className="form-control"
+                  required
+                  onChange={onHandleChange}
+                  // value={}
+                  name="state"
+                  type="text"
+                  placeholder="State"
+                />
+              </div>
+              <div className="col-4">
+                <input
+                  style={{
+                    borderRadius: "20px",
+                    backgroundColor: "#f4f4f4",
+                    border: "none",
+                  }}
+                  className="form-control"
+                  required
+                  onChange={onHandleChange}
+                  // value={}
+                  name="zip"
+                  type="text"
+                  placeholder="Zip"
+                />
+              </div>
+            </div>
+
             <div className="form-group centered-row d-block pb-2">
               {/* stripe/square */}
               <SquarePaymentForm
