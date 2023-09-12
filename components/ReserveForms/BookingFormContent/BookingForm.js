@@ -24,6 +24,7 @@ const BookingFormContent = (props) => {
   } = props;
 
   console.log("----", count);
+  console.log("####", tourData);
 
   // const [shouldOpenCalendar, setShouldOpenCalendar] = useState(false);
   // const [daysButtonEnabled, setDaysButtonEnable] = useState(true);
@@ -99,7 +100,8 @@ const BookingFormContent = (props) => {
                 className="mt-3"
               >
 
-                <div><span style={{ fontWeight: "600", color: "black", fontSize: "1.2rem" }}>${tourData.price_adult_2h}</span><span>/person</span></div>
+                <div><span style={{ fontWeight: "600", color: "black", fontSize: "1.2rem" }}>${((tourData.title).includes("Pedicab")) ? 
+                  (count.duration == 1 ? tourData.price_adult : tourData.price_adult_2h) : tourData.price_adult_2h}</span><span>/person</span></div>
 
                 <div
                   className="col-6 d-flex"
@@ -165,8 +167,16 @@ const BookingFormContent = (props) => {
                   }}
                   className="mt-3"
                 >
-                  <p className="mb-2 mt-2">${tourData.price_adult_2h} x {count.adults} Adult</p>
-                  <p className="mb-2 mt-2">${tourData.price_adult_2h * count.adults}</p>
+                  <p className="mb-2 mt-2">${
+                  ((tourData.title).includes("Pedicab")) ? 
+                  (count.duration == 1 ? tourData.price_adult : tourData.price_adult_2h) : tourData.price_adult_2h
+                  } x {count.adults} Adult</p>
+
+                  <p className="mb-2 mt-2">${(((tourData.title).includes("Pedicab")) ? 
+                  (count.duration == 1 ? tourData.price_adult : tourData.price_adult_2h) : tourData.price_adult_2h) * count.adults}</p>
+
+                  {/* <p className="mb-2 mt-2">${tourData.price_adult_2h} x {count.adults} Adult</p>
+                  <p className="mb-2 mt-2">${tourData.price_adult_2h * count.adults}</p> */}
                 </div>
 
                 <div
@@ -176,8 +186,10 @@ const BookingFormContent = (props) => {
                     alignItems: "flex-start",
                   }}
                 >
-                  <p className="mb-2">${tourData.price_kid_2h} x {count.kids} Child</p>
-                  <p className="mb-2">${tourData.price_kid_2h * count.kids}</p>
+                  <p className="mb-2">${((tourData.title).includes("Pedicab")) ? 
+                  (count.duration == 1 ? tourData.price_kid : tourData.price_kid_2h) : tourData.price_kid_2h} x {count.kids} Child</p>
+                  <p className="mb-2">${((tourData.title).includes("Pedicab")) ? 
+                  (count.duration == 1 ? tourData.price_kid : tourData.price_kid_2h) : tourData.price_kid_2h * count.kids}</p>
                 </div>
 
                 <div style={{ border: "1px solid #e5e7eb", borderRadius: "1px" }}></div>
@@ -190,7 +202,9 @@ const BookingFormContent = (props) => {
                   }}
                 >
                   <p className="mb-2 mt-2">Total</p>
-                  <p className="mb-2 mt-2">${(tourData.price_adult_2h * count.adults) + (tourData.price_kid_2h * count.kids)}</p>
+                  <p className="mb-2 mt-2">${((((tourData.title).includes("Pedicab")) ? 
+                  (count.duration == 1 ? tourData.price_adult : tourData.price_adult_2h) : tourData.price_adult_2h) * count.adults) + ((((tourData.title).includes("Pedicab")) ? 
+                  (count.duration == 1 ? tourData.price_kid : tourData.price_kid_2h) : tourData.price_kid_2h) * count.kids)}</p>
                 </div>
 
               </div>

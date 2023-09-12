@@ -102,6 +102,7 @@ const StayDatesRangeInput = (props) => {
                   monthsShown={1}
                   showPopperArrow={false}
                   inline
+                  showTimeSelect
                   renderCustomHeader={p => (
                     <DatePickerCustomHeaderTwoMonth {...p} />
                   )}

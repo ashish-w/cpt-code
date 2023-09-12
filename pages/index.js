@@ -306,7 +306,7 @@ export default function Home({ slugsData, toursData }) {
 
               <div className="d-flex align-items-center">
                 <div className="col-sm-1">
-                  {/* <FontAwesomeIcon
+                  <FontAwesomeIcon
                     icon={faMapMarkerAlt}
                     size="lg"
                     style={{
@@ -315,7 +315,7 @@ export default function Home({ slugsData, toursData }) {
                       color: "#3d3d3c",
                     }}
                   />
-                  <br></br> */}
+                  {/* <br></br> */}
                   <FontAwesomeIcon
                     icon={faPhone}
                     size="lg"
@@ -324,7 +324,7 @@ export default function Home({ slugsData, toursData }) {
                 </div>
 
                 <div className="col-xs-12 col-sm-11">
-                  {/* <p className="font-bold">
+                  <p className="font-bold">
                     {replaceNewLines(toursData.address)}
                     <a
                       style={{
@@ -338,9 +338,9 @@ export default function Home({ slugsData, toursData }) {
                     >
                       Get Directions
                     </a>
-                  </p> */}
+                  </p>
                   <br></br>
-                  <p>
+                  <p className="mt-1">
                     {toursData.phone}
                     <br></br>
                     <a
