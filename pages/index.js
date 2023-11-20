@@ -315,7 +315,7 @@ export default function Home({ slugsData, toursData }) {
                       color: "#3d3d3c",
                     }}
                   />
-                  <br></br>
+                  {/* <br></br> */}
                   <FontAwesomeIcon
                     icon={faPhone}
                     size="lg"
@@ -339,7 +339,8 @@ export default function Home({ slugsData, toursData }) {
                       Get Directions
                     </a>
                   </p>
-                  <p>
+                  <br></br>
+                  <p className="mt-1">
                     {toursData.phone}
                     <br></br>
                     <a

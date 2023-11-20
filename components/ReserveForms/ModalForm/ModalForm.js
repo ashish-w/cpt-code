@@ -13,7 +13,7 @@ export default function ModalForm(props) {
 
   const childRef = useRef();
 
-  console.log(count);
+  // console.log(count);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState("");
@@ -55,7 +55,8 @@ export default function ModalForm(props) {
         count.adults * tourData.price_adult_2h +
         count.kids * tourData.price_kid_2h;
     }
-    bookNowButtonRef.current.innerText = `$${price} Book Now`;
+    // bookNowButtonRef.current.innerText = `$${price} Book Now`;
+    bookNowButtonRef.current.innerText = `Book Now`;
   };
 
   return (

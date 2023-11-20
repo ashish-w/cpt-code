@@ -307,10 +307,10 @@ a:hover {
 .btn-reserve {
   text-align: center;
   color: white !important;
-  /* background: #88bc2c !important;
-  border: 1px solid #88bc2c !important; */
-  background: #1b3d02 !important;
-  border: 1px solid #1b3d02 !important;
+  background: #88bc2c !important;
+  border: 1px solid #88bc2c !important;
+  /* background: #1b3d02 !important;
+  border: 1px solid #1b3d02 !important; */
   border-radius: 10px !important;
   padding: 10px !important;
   width: 140px !important;

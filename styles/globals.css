@@ -505,10 +505,10 @@ a {
 .book-now-btn {
   text-align: center;
   color: white !important;
-  /* background: #88bc2c !important;
-  border: 1px solid #88bc2c !important; */
-  background: #1b3d02 !important;
-  border: 1px solid #1b3d02 !important;
+  background: #88bc2c !important;
+  border: 1px solid #88bc2c !important;
+  /* background: #1b3d02 !important;
+  border: 1px solid #1b3d02 !important; */
   border-radius: 5rem !important;
   padding: 10px !important;
   /* width: 140px !important; */
@@ -554,4 +554,26 @@ a {
   border-radius: 20px !important;
   background-color: rgb(244, 244, 244) !important;
   border: medium none !important;
+}
+
+
+/* Date Picker */
+
+.react-datepicker {
+
+  border: none !important;
+  justify-content: center;
+  
+}
+
+.react-datepicker__aria-live {
+  display: none;
+}
+
+.react-datepicker__navigation{
+  align-items: baseline !important;
+}
+
+.react-datepicker__day_span {
+  border-radius: 50% !important;
 }
